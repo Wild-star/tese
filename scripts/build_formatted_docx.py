@@ -47,6 +47,10 @@ LEAD_WORDS = (
     "数据呈现。",
     "成效总结。",
     "提升报告。",
+    "方法说明。",
+    "证据边界。",
+    "核心论断。",
+    "政策依据。",
 )
 
 
@@ -104,10 +108,10 @@ def init_document() -> Document:
     sec = doc.sections[0]
     sec.page_width = Cm(SPEC.page_width_cm)
     sec.page_height = Cm(SPEC.page_height_cm)
-    sec.left_margin = Cm(SPEC.margin_cm)
-    sec.right_margin = Cm(SPEC.margin_cm)
-    sec.top_margin = Cm(SPEC.margin_cm)
-    sec.bottom_margin = Cm(SPEC.margin_cm)
+    sec.left_margin = Cm(SPEC.margin_left_cm)
+    sec.right_margin = Cm(SPEC.margin_right_cm)
+    sec.top_margin = Cm(SPEC.margin_top_cm)
+    sec.bottom_margin = Cm(SPEC.margin_bottom_cm)
     sec.header.paragraphs[0].text = ""
     fp = sec.footer.paragraphs[0]
     fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -130,7 +134,7 @@ def init_document() -> Document:
               WD_ALIGN_PARAGRAPH.JUSTIFY, Pt(SPEC.first_line_indent_pt))
     set_style(doc.styles["Title"], SPEC.font_cn_hei, SPEC.title_pt, True,
               WD_ALIGN_PARAGRAPH.CENTER, Cm(0), space_before=12, space_after=12)
-    set_style(doc.styles["Heading 1"], SPEC.font_cn_hei, SPEC.body_pt, True,
+    set_style(doc.styles["Heading 1"], SPEC.font_cn_hei, SPEC.h1_pt, True,
               WD_ALIGN_PARAGRAPH.CENTER, Cm(0), space_before=12, space_after=6, outline=0)
     set_style(doc.styles["Heading 2"], SPEC.font_cn_hei, SPEC.body_pt, True,
               WD_ALIGN_PARAGRAPH.LEFT, Cm(0), space_before=8, space_after=4, outline=1)
@@ -241,7 +245,7 @@ def add_three_line_table(doc, rows: list[list[str]]) -> None:
                 apply_line_15(para.paragraph_format)
                 for run in para.runs:
                     set_run_font(run, SPEC.font_cn_hei if is_header else SPEC.font_cn_song,
-                                 SPEC.body_pt, bold=is_header)
+                                 SPEC.table_pt, bold=is_header)
 
 
 def add_image(doc, path: Path) -> None:
@@ -338,11 +342,12 @@ def parse_and_build(md_path: Path, out_path: Path) -> Path:
             add_three_line_table(doc, rows)
             continue
 
-        # 题目
+        # 题目 / 副标题
         if stripped.startswith("# ") and not stripped.startswith("## "):
+            is_sub = text.startswith("——") or text.startswith("—")
             add_para(doc, text, style="Title", cn=SPEC.font_cn_hei, size=SPEC.title_pt,
                      bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, first_indent=Cm(0),
-                     space_before=12, space_after=12)
+                     space_before=0 if is_sub else 12, space_after=12 if is_sub else 0)
             i += 1
             continue
 
@@ -362,7 +367,7 @@ def parse_and_build(md_path: Path, out_path: Path) -> Path:
 
         # 一级 / 参考文献
         if stripped.startswith("## "):
-            add_para(doc, text, style="Heading 1", cn=SPEC.font_cn_hei, bold=True,
+            add_para(doc, text, style="Heading 1", cn=SPEC.font_cn_hei, size=SPEC.h1_pt, bold=True,
                      align=WD_ALIGN_PARAGRAPH.CENTER, first_indent=Cm(0),
                      space_before=12, space_after=6)
             i += 1
@@ -382,7 +387,8 @@ def parse_and_build(md_path: Path, out_path: Path) -> Path:
 
         # 图题 / 表题
         if re.match(r"^图\d+", text) or re.match(r"^表\d+", text):
-            add_para(doc, text, align=WD_ALIGN_PARAGRAPH.CENTER, first_indent=Cm(0),
+            add_para(doc, text, cn=SPEC.font_cn_song, size=SPEC.caption_pt,
+                     align=WD_ALIGN_PARAGRAPH.CENTER, first_indent=Cm(0),
                      space_before=2, space_after=8)
             i += 1
             continue
@@ -406,7 +412,7 @@ def parse_and_build(md_path: Path, out_path: Path) -> Path:
             pf.space_after = Pt(0)
             apply_line_15(pf)
             run = p.add_run(text)
-            set_run_font(run, SPEC.font_cn_song, SPEC.body_pt)
+            set_run_font(run, SPEC.font_cn_song, SPEC.ref_pt)
             i += 1
             continue
 
@@ -445,11 +451,15 @@ def main() -> None:
     path = parse_and_build(md, out)
     ascii_out = path.parent / "paper.docx"
     ascii_out.write_bytes(path.read_bytes())
+    v2 = path.parent / "paper_v2.docx"
+    v2.write_bytes(path.read_bytes())
     root_ascii = ROOT / "paper.docx"
     root_ascii.write_bytes(path.read_bytes())
+    (ROOT / "paper_v2.docx").write_bytes(path.read_bytes())
     artifacts = Path("/opt/cursor/artifacts")
     if artifacts.exists():
         (artifacts / "paper.docx").write_bytes(path.read_bytes())
+        (artifacts / "paper_v2.docx").write_bytes(path.read_bytes())
         print("artifacts:", artifacts / "paper.docx")
     print("已生成符合征稿格式的 Word：")
     print(path)
