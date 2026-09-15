@@ -443,9 +443,19 @@ def main() -> None:
     else:
         out = out.resolve()
     path = parse_and_build(md, out)
+    ascii_out = path.parent / "paper.docx"
+    ascii_out.write_bytes(path.read_bytes())
+    root_ascii = ROOT / "paper.docx"
+    root_ascii.write_bytes(path.read_bytes())
+    artifacts = Path("/opt/cursor/artifacts")
+    if artifacts.exists():
+        (artifacts / "paper.docx").write_bytes(path.read_bytes())
+        print("artifacts:", artifacts / "paper.docx")
     print("已生成符合征稿格式的 Word：")
     print(path)
-    print("请在 Cursor 工作区或 PR 文件列表中下载该 .docx，用 Microsoft Word 打开。")
+    print("英文文件名（请下载这个）：")
+    print(ascii_out)
+    print(root_ascii)
 
 
 if __name__ == "__main__":
