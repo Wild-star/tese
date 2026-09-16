@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+materials/
+output/page-*.png
+output/v5p-*.png
