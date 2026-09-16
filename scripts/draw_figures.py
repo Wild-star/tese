@@ -427,6 +427,102 @@ def fig24_card_to_text():
     save(fig, "fig24.jpg")
 
 
+def _desk(ax, x, y, w=0.55, h=0.32, fc="#D6E3F0"):
+    r = FancyBboxPatch((x - w / 2, y - h / 2), w, h, boxstyle="round,pad=0.01,rounding_size=0.04",
+                       facecolor=fc, edgecolor=NAVY, linewidth=0.9, zorder=2)
+    ax.add_patch(r)
+    ax.add_patch(Circle((x, y + h / 2 + 0.12), 0.09, facecolor="#F4F7FA", edgecolor=NAVY, lw=0.8, zorder=3))
+
+
+def fig25_desks():
+    fig, axes = plt.subplots(1, 2, figsize=(10.6, 5.4))
+    for ax in axes:
+        ax.set_xlim(0, 10)
+        ax.set_ylim(0, 8)
+        ax.axis("off")
+        ax.set_aspect("equal")
+    ax = axes[0]
+    ax.set_title("（a）行列式：发言朝向讲台", color=NAVY, fontsize=11)
+    box(ax, 5, 7.2, 2.4, 0.7, "教师 / 屏幕", fc=NAVY, fs=9)
+    ax.texts[-1].set_color("white")
+    for r in range(4):
+        for c in range(5):
+            _desk(ax, 1.5 + c * 1.7, 5.4 - r * 1.15)
+            ax.annotate("", xy=(5, 6.75), xytext=(1.5 + c * 1.7, 5.55 - r * 1.15),
+                        arrowprops=dict(arrowstyle="-", color="#A6A6A6", lw=0.6))
+    ax.text(5, 0.45, "身体在场 ≠ 话语在场", ha="center", color=ACCENT, fontsize=10)
+    ax = axes[1]
+    ax.set_title("（b）多向通道：组内互说 + 组际可见", color=NAVY, fontsize=11)
+    box(ax, 5, 7.2, 2.2, 0.65, "教师侧立", fc=NAVY, fs=9)
+    ax.texts[-1].set_color("white")
+    box(ax, 8.6, 7.2, 1.8, 0.65, "AI投屏", fc="#FFE699", fs=9)
+    clusters = [(2.4, 4.6), (7.4, 4.6), (5.0, 2.0)]
+    for cx, cy in clusters:
+        for dx, dy in [(-0.7, 0.45), (0.7, 0.45), (-0.7, -0.45), (0.7, -0.45)]:
+            _desk(ax, cx + dx, cy + dy, fc="#C5E0B4")
+        ax.add_patch(Circle((cx, cy), 0.22, facecolor="#FFF2CC", edgecolor=GREEN, lw=1.0, zorder=4))
+        ax.text(cx, cy, "说", ha="center", va="center", fontsize=8, zorder=5)
+    ax.annotate("", xy=(7.4, 5.3), xytext=(2.4, 5.3), arrowprops=dict(arrowstyle="<->", color=BLUE, lw=1.2))
+    ax.annotate("", xy=(8.6, 6.8), xytext=(7.4, 5.2), arrowprops=dict(arrowstyle="-|>", color=ACCENT, lw=1.0))
+    ax.text(5, 0.45, "关键词上屏，追问仍在组际发生", ha="center", color=GREEN, fontsize=10)
+    fig.suptitle("座位朝向决定通道：秧田收束发言，围坐打开横向互动", color=NAVY, fontsize=12, y=0.98)
+    fig.tight_layout()
+    save(fig, "fig25.jpg")
+
+
+def fig26_traffic():
+    fig, ax = plt.subplots(figsize=(10.2, 5.0))
+    ax.set_xlim(0, 12)
+    ax.set_ylim(0, 6)
+    ax.axis("off")
+    lights = [
+        (2.0, "#548235", "#E2EFDA", "绿灯·宜做", "问题梯度\n观点归集\n观察卡模板\n朗读即时反馈\n情境图助识字"),
+        (6.0, "#C45911", "#FFF2CC", "黄灯·慎做", "角色扮演陪练\n争议句投屏\n学情标签提示\n须教师当场守门"),
+        (10.0, "#C00000", "#FCE4D6", "红灯·禁做", "本课终答/中心思想\n成篇习作代写\n当众惩戒式评分\n小学生独自开放生成"),
+    ]
+    for x, ec, fc, title, body in lights:
+        ax.add_patch(Circle((x, 5.15), 0.38, facecolor=ec, edgecolor=ec, zorder=3))
+        box(ax, x, 2.6, 3.4, 3.2, title + "\n\n" + body, fc=fc, ec=ec, fs=10)
+    ax.text(6, 0.45, "小学语文课堂：绿灯给支架，黄灯须守门，红灯不越位", ha="center", color=NAVY, fontsize=11)
+    save(fig, "fig26.jpg")
+
+
+def fig27_dialogue():
+    fig, ax = plt.subplots(figsize=(10.4, 5.2))
+    ax.set_xlim(0, 12)
+    ax.set_ylim(0, 6.2)
+    ax.axis("off")
+    box(ax, 2.4, 4.6, 3.6, 2.0, "屏幕生成句\n“等待也是一种策略”", fc="#FFE699", fs=11)
+    box(ax, 6.2, 2.4, 3.2, 1.6, "学生\n课文里有这一句吗？", fc="#C5E0B4", fs=11)
+    box(ax, 9.6, 4.4, 3.2, 1.6, "教师\n回到第几自然段？", fc=LIGHT, fs=11)
+    arrow(ax, 4.3, 4.2, 5.0, 3.2)
+    arrow(ax, 8.0, 4.0, 7.6, 3.2)
+    box(ax, 6.2, 0.85, 8.8, 0.9, "概念交互发生在“据文校验”，而不是发生在生成句上屏的瞬间", fc=PALE, fs=10)
+    ax.text(6, 5.9, "《守株待兔》现场示意：人机输出必须被追问", ha="center", color=NAVY, fontsize=12)
+    save(fig, "fig27.jpg")
+
+
+def fig28_ketype():
+    fig, ax = plt.subplots(figsize=(10.6, 5.6))
+    ax.set_xlim(0, 12)
+    ax.set_ylim(0, 7)
+    ax.axis("off")
+    cols = [
+        (1.5, "识字写字", "宜：情境图、音形提示", "禁：替学生识记"),
+        (3.9, "阅读鉴赏", "宜：问题链、观点归集", "禁：给中心思想"),
+        (6.3, "口语交际", "宜：情境陪练", "禁：替学生发言"),
+        (8.7, "习作", "宜：角度/提纲/病句", "禁：生成成篇范文"),
+        (11.1, "综合实践", "宜：资料聚类", "禁：替代真实调查"),
+    ]
+    for x, t, ok, no in cols:
+        box(ax, x, 5.6, 2.2, 1.1, t, fc=NAVY, fs=10, fw="bold")
+        ax.texts[-1].set_color("white")
+        box(ax, x, 3.6, 2.2, 1.8, ok, fc="#E2EFDA", fs=9)
+        box(ax, x, 1.5, 2.2, 1.6, no, fc="#FCE4D6", fs=9)
+    ax.text(6, 0.4, "课型不同，支架不同；终答、范写、价值判断一律留在人这边", ha="center", color=NAVY, fontsize=11)
+    save(fig, "fig28.jpg")
+
+
 def main():
     fig01_layers()
     fig02_model()
@@ -448,6 +544,14 @@ def main():
     fig18_shouzhi()
     fig19_public()
     fig24_card_to_text()
+    fig25_desks()
+    fig26_traffic()
+    fig27_dialogue()
+    fig28_ketype()
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from compose_plates import compose_all
+    compose_all()
 
 
 if __name__ == "__main__":

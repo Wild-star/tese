@@ -31,30 +31,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from word_format import SPEC  # noqa: E402
 
-LEAD_WORDS = (
-    "缘起。",
-    "困境聚焦。",
-    "问题透视。",
-    "症结剖析。",
-    "原因探寻。",
-    "实践探索。",
-    "行动实施。",
-    "方法尝试。",
-    "教学实践。",
-    "策略践行。",
-    "策略应用。",
-    "结果反馈。",
-    "数据呈现。",
-    "成效总结。",
-    "提升报告。",
-    "方法说明。",
-    "证据边界。",
-    "核心论断。",
-    "政策依据。",
-    "图文互证。",
-    "文献定位。",
-    "编码说明。",
-)
+# 正文层级仅允许 一、／（一）／1.；不再把“缘起。”等段首词当标题加粗。
+LEAD_WORDS = ()
 
 
 def set_run_font(run, cn: str, size: float, bold: bool = False) -> None:
@@ -261,7 +239,18 @@ def add_image(doc, path: Path) -> None:
     pf.keep_with_next = True
     apply_line_15(pf)
     run = p.add_run()
-    run.add_picture(str(path), width=Cm(SPEC.image_width_cm))
+    width_cm = SPEC.image_width_cm
+    try:
+        from PIL import Image as PILImage
+        with PILImage.open(path) as im:
+            w, h = im.size
+        if w and h:
+            height_cm = width_cm * h / w
+            if height_cm > 17.5:
+                width_cm = 17.5 * w / h
+    except Exception:
+        pass
+    run.add_picture(str(path), width=Cm(width_cm))
 
 
 def strip_md(text: str) -> str:
@@ -314,7 +303,7 @@ def parse_and_build(md_path: Path, out_path: Path) -> Path:
             i += 1
             continue
         if skipping_toc:
-            if stripped.startswith("## ") or stripped.startswith("缘起") or stripped.startswith("【摘要】"):
+            if stripped.startswith("## ") or stripped.startswith("【摘要】"):
                 skipping_toc = False
             else:
                 i += 1
@@ -456,13 +445,9 @@ def main() -> None:
     ascii_out.write_bytes(path.read_bytes())
     root_ascii = ROOT / "paper.docx"
     root_ascii.write_bytes(path.read_bytes())
-    for ver in ("paper_v2.docx", "paper_v3.docx"):
-        (path.parent / ver).write_bytes(path.read_bytes())
-        (ROOT / ver).write_bytes(path.read_bytes())
     artifacts = Path("/opt/cursor/artifacts")
     if artifacts.exists():
         (artifacts / "paper.docx").write_bytes(path.read_bytes())
-        (artifacts / "paper_v3.docx").write_bytes(path.read_bytes())
         print("artifacts:", artifacts / "paper.docx")
     print("已生成符合征稿格式的 Word：")
     print(path)
