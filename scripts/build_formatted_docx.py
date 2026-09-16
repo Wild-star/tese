@@ -117,7 +117,7 @@ def init_document() -> Document:
               WD_ALIGN_PARAGRAPH.CENTER, Cm(0), space_before=12, space_after=12)
     set_style(doc.styles["Heading 1"], SPEC.font_cn_hei, SPEC.h1_pt, True,
               WD_ALIGN_PARAGRAPH.CENTER, Cm(0), space_before=12, space_after=6, outline=0)
-    set_style(doc.styles["Heading 2"], SPEC.font_cn_hei, SPEC.body_pt, True,
+    set_style(doc.styles["Heading 2"], SPEC.font_cn_hei, SPEC.h2_pt, True,
               WD_ALIGN_PARAGRAPH.LEFT, Cm(0), space_before=8, space_after=4, outline=1)
     set_style(doc.styles["Heading 3"], SPEC.font_cn_hei, SPEC.body_pt, True,
               WD_ALIGN_PARAGRAPH.LEFT, Cm(0), space_before=6, space_after=3, outline=2)
@@ -208,6 +208,12 @@ def add_three_line_table(doc, rows: list[list[str]]) -> None:
 
     n_rows = len(rows)
     for ri, row in enumerate(rows):
+        if ri == 0:
+            tr = table.rows[0]._tr
+            trPr = tr.get_or_add_trPr()
+            if trPr.find(qn("w:tblHeader")) is None:
+                hdr = OxmlElement("w:tblHeader")
+                trPr.append(hdr)
         for ci in range(ncols):
             text = row[ci].strip() if ci < len(row) else ""
             cell = table.cell(ri, ci)
@@ -365,20 +371,21 @@ def parse_and_build(md_path: Path, out_path: Path) -> Path:
             i += 1
             continue
         if stripped.startswith("### "):
-            add_para(doc, text, style="Heading 2", cn=SPEC.font_cn_hei, bold=True,
+            add_para(doc, text, style="Heading 2", cn=SPEC.font_cn_hei, size=SPEC.h2_pt, bold=True,
                      align=WD_ALIGN_PARAGRAPH.LEFT, first_indent=Cm(0),
                      space_before=8, space_after=4)
             i += 1
             continue
         if stripped.startswith("#### "):
-            add_para(doc, text, style="Heading 3", cn=SPEC.font_cn_hei, bold=True,
+            add_para(doc, text, style="Heading 3", cn=SPEC.font_cn_hei, size=SPEC.body_pt, bold=True,
                      align=WD_ALIGN_PARAGRAPH.LEFT, first_indent=Cm(0),
                      space_before=6, space_after=3)
             i += 1
             continue
 
-        # 图题 / 表题
-        if re.match(r"^图\d+", text) or re.match(r"^表\d+", text):
+        # 图题 / 表题（统一“图X 标题 / 表X 标题”）
+        if re.match(r"^[图表]\d+", text):
+            text = re.sub(r"^([图表]\d+)[　\s]+", r"\1 ", text)
             add_para(doc, text, cn=SPEC.font_cn_song, size=SPEC.caption_pt,
                      align=WD_ALIGN_PARAGRAPH.CENTER, first_indent=Cm(0),
                      space_before=2, space_after=8)

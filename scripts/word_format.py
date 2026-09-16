@@ -12,8 +12,8 @@ class WordFormatSpec:
     page_height_cm: float = 29.7
     margin_top_cm: float = 2.54
     margin_bottom_cm: float = 2.54
-    margin_left_cm: float = 2.8
-    margin_right_cm: float = 2.8
+    margin_left_cm: float = 3.17
+    margin_right_cm: float = 3.17
     # 兼容旧字段
     margin_cm: float = 2.54
 
@@ -21,12 +21,13 @@ class WordFormatSpec:
     font_cn_hei: str = "黑体"
     font_en: str = "Times New Roman"
 
-    title_pt: float = 16.0       # 三号
-    h1_pt: float = 14.0          # 四号
-    body_pt: float = 12.0        # 小四
+    title_pt: float = 16.0       # 题目：三号
+    h1_pt: float = 16.0          # 一级：三号
+    h2_pt: float = 14.0          # 二级：四号
+    body_pt: float = 12.0        # 小四（正文／三级）
     caption_pt: float = 10.5     # 五号
     table_pt: float = 10.5       # 五号
-    ref_pt: float = 12.0         # 小四
+    ref_pt: float = 10.5         # 参考文献：五号
 
     line_spacing: float = 1.5
     first_line_indent_pt: float = 24.0
