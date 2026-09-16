@@ -9,5 +9,5 @@ if [[ -f output/paper.docx ]]; then
   cp -f output/paper.docx "$ROOT/paper.docx"
   cp -f output/paper_v2.docx "$ROOT/paper_v2.docx" 2>/dev/null || true
   echo "请下载：$ROOT/paper.docx"
-  echo "本轮版本：$ROOT/paper_v2.docx"
+  echo "本轮版本：$ROOT/paper_v3.docx"
 fi

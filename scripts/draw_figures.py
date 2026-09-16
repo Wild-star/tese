@@ -413,6 +413,20 @@ def fig19_public():
     save(fig, "fig19.jpg")
 
 
+def fig24_card_to_text():
+    fig, ax = plt.subplots(figsize=(9.2, 3.4))
+    ax.set_xlim(0, 12)
+    ax.set_ylim(0, 4)
+    ax.axis("off")
+    steps = ["课前观察\n完成记录卡", "课中分享\n补充观察角度", "化卡为文\n写清楚+有感受", "互评修改\n同伴交流分享"]
+    for i, t in enumerate(steps):
+        box(ax, 1.6 + i * 3.0, 2.0, 2.5, 1.6, t, fc="#D6E3F0", fs=10)
+        if i < 3:
+            arrow(ax, 2.85 + i * 3.0, 2.0, 3.35 + i * 3.0, 2.0)
+    ax.text(6, 3.45, "习作互动链：观察记录卡 → 化卡为文 → 分享修改", ha="center", color="#1F4E79", fontsize=11)
+    save(fig, "fig24.jpg")
+
+
 def main():
     fig01_layers()
     fig02_model()
@@ -433,7 +447,7 @@ def main():
     fig17_shouzhu()
     fig18_shouzhi()
     fig19_public()
-    # remove unused old figs from being required; keep files on disk but paper won't cite 20-33
+    fig24_card_to_text()
 
 
 if __name__ == "__main__":

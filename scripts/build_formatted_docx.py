@@ -451,15 +451,15 @@ def main() -> None:
     path = parse_and_build(md, out)
     ascii_out = path.parent / "paper.docx"
     ascii_out.write_bytes(path.read_bytes())
-    v2 = path.parent / "paper_v2.docx"
-    v2.write_bytes(path.read_bytes())
     root_ascii = ROOT / "paper.docx"
     root_ascii.write_bytes(path.read_bytes())
-    (ROOT / "paper_v2.docx").write_bytes(path.read_bytes())
+    for ver in ("paper_v2.docx", "paper_v3.docx"):
+        (path.parent / ver).write_bytes(path.read_bytes())
+        (ROOT / ver).write_bytes(path.read_bytes())
     artifacts = Path("/opt/cursor/artifacts")
     if artifacts.exists():
         (artifacts / "paper.docx").write_bytes(path.read_bytes())
-        (artifacts / "paper_v2.docx").write_bytes(path.read_bytes())
+        (artifacts / "paper_v3.docx").write_bytes(path.read_bytes())
         print("artifacts:", artifacts / "paper.docx")
     print("已生成符合征稿格式的 Word：")
     print(path)
