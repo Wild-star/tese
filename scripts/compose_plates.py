@@ -67,6 +67,7 @@ def photo_grid(items: list[tuple[str, str]], out_name: str, title: str, cell=(92
 
 
 def mpl_grid(paths: list[str], labels: list[str], out_name: str, title: str, ncols=2, figsize=(11.2, 8.4)):
+    plt.rcParams.update({"font.family": "WenQuanYi Micro Hei", "axes.unicode_minus": False})
     n = len(paths)
     nrows = (n + ncols - 1) // ncols
     fig, axes = plt.subplots(nrows, ncols, figsize=figsize)
@@ -145,6 +146,16 @@ def compose_all() -> None:
         "plate02.jpg",
         "图集：形式—关系—技术三类失衡如何叠在一起",
         ncols=2, figsize=(11.4, 9.2),
+    )
+    mpl_grid(
+        ["fig16.jpg", "fig17.jpg", "fig18.jpg", "fig10.jpg"],
+        ["（a）《火烧云》：先观察、先写后比",
+         "（b）《守株待兔》：角色陪练与文本证伪",
+         "（c）《手指》：归集上屏、组际追问",
+         "（d）课前预学—课中互学—课后辩学闭环"],
+        "plate_flow.jpg",
+        "课例流程合集：破程、守界与全员可见的操作链",
+        ncols=2, figsize=(11.2, 9.0),
     )
     mpl_grid(
         ["fig08.jpg", "fig03.jpg", "fig12.jpg", "fig13.jpg", "fig26.jpg"],
