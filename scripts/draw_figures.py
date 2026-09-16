@@ -294,8 +294,8 @@ def fig12_ai_role():
     ax.set_xlim(0, 10)
     ax.set_ylim(0, 5.5)
     ax.axis("off")
-    box(ax, 3, 3.4, 4.2, 3.0, "AI宜做\n生成问题梯度\n归集小组观点\n提供分层提示\n即时朗读反馈\n情境图辅助识字", fc="#E2EFDA", fs=11)
-    box(ax, 7.2, 3.4, 4.2, 3.0, "AI慎做/禁做\n直接给出中心思想\n当众惩戒式评分\n替代学生成文\n充当价值判断者\n小学生独自开放生成", fc="#FCE4D6", fs=11)
+    box(ax, 3, 3.4, 4.2, 3.0, "AI宜做\n生成问题梯度\n归集小组观点\n观察记录卡模板\n即时朗读反馈\n情境图辅助识字", fc="#E2EFDA", fs=11)
+    box(ax, 7.2, 3.4, 4.2, 3.0, "AI慎做/禁做\n直接给出中心思想\n当众惩戒式评分\n直接生成成篇习作\n充当价值判断者\n小学生独自开放生成", fc="#FCE4D6", fs=11)
     ax.text(5, 0.7, "原则：育人为本、技术为用；增强而非替代", ha="center", color=NAVY, fontsize=11, fontweight="bold")
     save(fig, "fig12.jpg")
 
