@@ -119,22 +119,26 @@ def dense_grid(
     DENSE.mkdir(parents=True, exist_ok=True)
     n = len(items)
     nrows = (n + ncols - 1) // ncols
-    pad, cap_h, title_h, gap = 14, 48, 64, 10
+    pad, cap_h, title_h, gap = 16, 56, 72, 12
+    if ncols == 2 and n == 4:
+        cell = (860, 560)
+        cap_h, title_h, gap = 64, 78, 16
     W = ncols * cell[0] + (ncols + 1) * gap
     H = title_h + nrows * (cell[1] + cap_h) + (nrows + 1) * gap
     canvas = Image.new("RGB", (W, H), "white")
     draw = ImageDraw.Draw(canvas)
-    draw.text((W // 2, 16), title, fill=NAVY, font=_font(26), anchor="mt")
+    draw.text((W // 2, 20), title, fill=NAVY, font=_font(30 if ncols == 2 and n == 4 else 26), anchor="mt")
     for i, (path, caption) in enumerate(items):
         r, c = divmod(i, ncols)
         x = gap + c * (cell[0] + gap)
         y = title_h + gap + r * (cell[1] + cap_h + gap)
         img = _fit(path, cell[0], cell[1], mode=fit)
         canvas.paste(img, (x, y))
-        draw.rectangle([x, y, x + cell[0] - 1, y + cell[1] - 1], outline=NAVY, width=2)
+        draw.rectangle([x, y, x + cell[0] - 1, y + cell[1] - 1], outline=NAVY,
+                       width=3 if ncols == 2 and n == 4 else 2)
         # wrap caption roughly
-        draw.text((x + cell[0] // 2, y + cell[1] + 8), caption, fill="#2F2F2F",
-                  font=_font(16), anchor="mt")
+        draw.text((x + cell[0] // 2, y + cell[1] + 12), caption, fill="#2F2F2F",
+                  font=_font(22 if ncols == 2 and n == 4 else 16), anchor="mt")
     dest = OUT / out_name
     canvas.save(dest, quality=92)
     # also keep a copy under dense/
@@ -298,9 +302,14 @@ def compose_dense() -> None:
         "（a）字卡／谜语投屏", "（b）低段课堂就座",
         "（c）举手应答", "（d）角色扮演",
     ]
-    dense_grid(list(zip(staged["low"], labels)), "plate_low.jpg",
-               "低段阅读研讨合集：情境打开与通道仍偏放射", ncols=2,
-               cell=(720, 460))
+    dense_grid(
+        list(zip(staged["low"], labels)),
+        "plate_low.jpg",
+        "图13 低段阅读研讨合集（2×2）",
+        ncols=2,
+        cell=(860, 560),
+        fit="cover",
+    )
 
     meta = {k: [str(p.relative_to(ROOT)) for p in v] for k, v in staged.items()}
     (DENSE / "manifest.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
