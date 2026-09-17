@@ -100,10 +100,10 @@ def compose_all() -> None:
     )
     photo_grid(
         [
-            ("real/jing_board.png", "（a）《即景》板书：一定顺序，写出动态变化"),
+            ("real/jing_board_live.jpg", "（a）《即景》现场板书：一定顺序，写出动态变化"),
             ("real/jing_card.jpg", "（b）课前观察记录单：日落过程用图和词记下变化"),
             ("real/plant_card.jpg", "（c）植物记录卡：看、闻、摸分开写，感受写进卡里"),
-            ("real/guren_board.png", "（d）《古人谈读书》板书：态度与方法，落在熟读深思"),
+            ("real/guren_board_live.jpg", "（d）《古人谈读书》现场板书：态度与方法，落在熟读深思"),
         ],
         "plate_scaffold.jpg",
         "真实教学材料合集：板书、观察记录单与记录卡",
@@ -115,7 +115,7 @@ def compose_all() -> None:
             ("real/jing_card.jpg", "（a）观察记录单先完成：眼前的、当下的景"),
             ("real/jing_req.jpg", "（b）教材要求上屏：按顺序写，写出动态变化"),
             ("real/jing_essay.jpg", "（c）学生片段上屏，对照板书评改变化是否写出"),
-            ("real/jing_board.png", "（d）板书把“顺序／变化”写成可见支架"),
+            ("real/jing_scene.jpg", "（d）现场板书与观察材料进入公共视野"),
         ],
         "plate_break.jpg",
         "《即景》破程合集：观察所得进入课堂，终稿仍由学生完成",
