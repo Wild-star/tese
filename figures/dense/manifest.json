@@ -1,0 +1,79 @@
+{
+  "scene": [
+    "figures/dense/scene_cotton_screen.png",
+    "figures/dense/scene_cotton_class.jpeg",
+    "figures/dense/scene_elephant_hands.png",
+    "figures/dense/scene_elephant_play.png",
+    "figures/dense/scene_jing_wide.jpeg",
+    "figures/dense/scene_jing_board_scene.jpeg",
+    "figures/dense/scene_plant_wide.jpeg",
+    "figures/dense/scene_plant_share.jpeg",
+    "figures/dense/scene_guren_wide.jpeg"
+  ],
+  "scaffold": [
+    "figures/dense/scaffold_jing_title.png",
+    "figures/dense/scaffold_jing_board.png",
+    "figures/dense/scaffold_jing_card.jpeg",
+    "figures/dense/scaffold_jing_req.png",
+    "figures/dense/scaffold_plant_title.png",
+    "figures/dense/scaffold_plant_board.png",
+    "figures/dense/scaffold_plant_card.png",
+    "figures/dense/scaffold_guren_title.png",
+    "figures/dense/scaffold_guren_board.png"
+  ],
+  "break": [
+    "figures/dense/break_b1.jpeg",
+    "figures/dense/break_b2.jpeg",
+    "figures/dense/break_b3.jpeg",
+    "figures/dense/break_b4.jpeg",
+    "figures/dense/break_b5.png",
+    "figures/dense/break_b6.png",
+    "figures/dense/break_b7.png",
+    "figures/dense/break_b8.jpeg",
+    "figures/dense/break_b9.jpeg"
+  ],
+  "write": [
+    "figures/dense/write_w1.jpeg",
+    "figures/dense/write_w2.jpeg",
+    "figures/dense/write_w3.jpeg",
+    "figures/dense/write_w4.jpeg",
+    "figures/dense/write_w5.png",
+    "figures/dense/write_w6.png",
+    "figures/dense/write_w7.png",
+    "figures/dense/write_w8.png",
+    "figures/dense/write_w9.jpeg"
+  ],
+  "voice": [
+    "figures/dense/voice_v1.jpeg",
+    "figures/dense/voice_v2.jpeg",
+    "figures/dense/voice_v3.jpeg",
+    "figures/dense/voice_v4.jpeg",
+    "figures/dense/voice_v5.jpeg",
+    "figures/dense/voice_v6.jpeg",
+    "figures/dense/voice_v7.jpeg",
+    "figures/dense/voice_v8.jpeg",
+    "figures/dense/voice_v9.jpeg"
+  ],
+  "prep": [
+    "figures/dense/prep_p1.jpeg",
+    "figures/dense/prep_p2.jpeg",
+    "figures/dense/prep_p3.jpeg",
+    "figures/dense/prep_p4.jpeg",
+    "figures/dense/prep_p5.jpeg",
+    "figures/dense/prep_p6.jpeg",
+    "figures/dense/prep_p7.jpeg",
+    "figures/dense/prep_p8.jpeg",
+    "figures/dense/prep_p9.jpeg"
+  ],
+  "low": [
+    "figures/dense/low_l1.png",
+    "figures/dense/low_l2.jpeg",
+    "figures/dense/low_l3.png",
+    "figures/dense/low_l4.png",
+    "figures/dense/low_l5.png",
+    "figures/dense/low_l6.png",
+    "figures/dense/low_l7.png",
+    "figures/dense/low_l8.jpeg",
+    "figures/dense/low_l9.jpeg"
+  ]
+}
