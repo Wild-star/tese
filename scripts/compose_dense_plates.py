@@ -37,16 +37,58 @@ def _fit(path: Path, w: int, h: int, mode: str = "cover") -> Image.Image:
     return im.crop((left, top, left + w, top + h))
 
 
+# 小语名师联盟封面/二维码/装饰，以及推文页眉碎片：无课堂互动信息
+REJECT_FILES = {
+    "即景/01.png", "即景/03.png", "即景/07.png",
+    "古人谈读书/01.png", "古人谈读书/03.png", "古人谈读书/09.png",
+    "我的植物朋友/01.png", "我的植物朋友/07.png", "我的植物朋友/08.png",
+    "第一学段阅读研讨/01.png", "第一学段阅读研讨/02.png", "第一学段阅读研讨/03.png",
+    "第一学段阅读研讨/04.png", "第一学段阅读研讨/05.png", "第一学段阅读研讨/06.png",
+    "第一学段阅读研讨/07.png",  # 听课席，非课堂互动
+    "赋能分层共生集备/01.png", "赋能分层共生集备/02.png", "赋能分层共生集备/03.png",
+    "赋能分层共生集备/04.png", "赋能分层共生集备/05.png", "赋能分层共生集备/06.png",
+    "赋能分层共生集备/07.png", "赋能分层共生集备/08.png",
+    "五校语文集体备课/01.png", "五校语文集体备课/02.png", "五校语文集体备课/03.png",
+    "五校语文集体备课/04.png", "五校语文集体备课/05.png", "五校语文集体备课/06.png",
+    "五校语文集体备课/07.png", "五校语文集体备课/08.png", "五校语文集体备课/09.png",
+    "五校语文集体备课/10.png",
+    "地方课程三秀同台/01.png", "地方课程三秀同台/20.png",
+}
+
+
+def is_rejected(p: Path) -> bool:
+    try:
+        rel = str(p.resolve().relative_to(MAT.resolve())).replace("\\", "/")
+    except Exception:
+        rel = f"{p.parent.name}/{p.name}"
+    if rel in REJECT_FILES:
+        return True
+    try:
+        im = Image.open(p).convert("RGB")
+    except Exception:
+        return True
+    w, h = im.size
+    ar = w / max(h, 1)
+    if ar > 2.2 or ar < 0.4:
+        return True
+    if w * h < 150000:
+        return True
+    # 近单色装饰块
+    sample = im.resize((32, 32))
+    colors = len({px for px in sample.getdata()})
+    if colors < 18:
+        return True
+    return False
+
+
 def score_path(p: Path) -> float:
+    if is_rejected(p):
+        return -1.0
     im = Image.open(p)
     w, h = im.size
     area = w * h
     ar = w / max(h, 1)
     score = float(area)
-    if ar > 2.8 or ar < 0.35:
-        score *= 0.12
-    if area < 120000:
-        score *= 0.1
     if 1.1 <= ar <= 1.6:
         score *= 1.45
     return score
@@ -54,12 +96,12 @@ def score_path(p: Path) -> float:
 
 def pick(album: str, n: int = 6, prefer: list[str] | None = None) -> list[Path]:
     d = MAT / album
-    files = [p for p in d.iterdir() if p.suffix.lower() in {".jpg", ".jpeg", ".png"}]
+    files = [p for p in d.iterdir() if p.suffix.lower() in {".jpg", ".jpeg", ".png"} and not is_rejected(p)]
     if prefer:
         ordered = []
         for name in prefer:
             p = d / name
-            if p.exists():
+            if p.exists() and not is_rejected(p):
                 ordered.append(p)
         rest = sorted([p for p in files if p not in ordered], key=score_path, reverse=True)
         return (ordered + rest)[:n]
@@ -101,8 +143,18 @@ def dense_grid(
     return dest
 
 
+def resolve_src(album: str, fname: str) -> Path | None:
+    if album == "real":
+        p = ROOT / "figures" / "real" / fname
+    else:
+        p = MAT / album / fname
+    if p.exists() and (album == "real" or not is_rejected(p)):
+        return p
+    return None
+
+
 def stage_copies() -> dict:
-    """Copy selected materials into figures/dense with stable names."""
+    """仅收录课堂实拍与真实材料，排除小语名师联盟封面/二维码/装饰图。"""
     DENSE.mkdir(parents=True, exist_ok=True)
     mapping = {
         "scene": [
@@ -117,37 +169,34 @@ def stage_copies() -> dict:
             ("古人谈读书", "02.jpeg", "guren_wide"),
         ],
         "scaffold": [
-            ("即景", "01.png", "jing_title"),
-            ("即景", "03.png", "jing_board"),
-            ("即景", "05.jpeg", "jing_card"),
-            ("即景", "07.png", "jing_req"),
-            ("我的植物朋友", "01.png", "plant_title"),
-            ("我的植物朋友", "07.png", "plant_board"),
-            ("我的植物朋友", "08.png", "plant_card"),
-            ("古人谈读书", "01.png", "guren_title"),
-            ("古人谈读书", "03.png", "guren_board"),
+            ("real", "jing_card.jpg", "jing_card"),
+            ("real", "jing_essay.jpg", "jing_essay"),
+            ("即景", "04.jpeg", "jing_board_live"),
+            ("real", "plant_card.jpg", "plant_card"),
+            ("real", "plant_board.jpg", "plant_board_live"),
+            ("real", "plant_share.jpg", "plant_share"),
+            ("real", "guren_text.jpg", "guren_text"),
+            ("real", "guren_mic.jpg", "guren_mic"),
+            ("real", "guren_peer.jpg", "guren_peer"),
         ],
         "break": [
             ("即景", "02.jpeg", "b1"),
             ("即景", "04.jpeg", "b2"),
             ("即景", "06.jpeg", "b3"),
-            ("即景", "05.jpeg", "b4"),
-            ("即景", "03.png", "b5"),
-            ("即景", "07.png", "b6"),
-            ("即景", "01.png", "b7"),
-            ("赋能分层共生集备", "12.jpeg", "b8"),
-            ("赋能分层共生集备", "13.jpeg", "b9"),
+            ("real", "jing_card.jpg", "b4"),
+            ("real", "jing_essay.jpg", "b5"),
+            ("real", "jing_req.jpg", "b6"),
         ],
         "write": [
             ("我的植物朋友", "02.jpeg", "w1"),
             ("我的植物朋友", "03.jpeg", "w2"),
             ("我的植物朋友", "05.jpeg", "w3"),
             ("我的植物朋友", "06.jpeg", "w4"),
-            ("我的植物朋友", "07.png", "w5"),
-            ("我的植物朋友", "08.png", "w6"),
+            ("real", "plant_card.jpg", "w5"),
+            ("real", "plant_board.jpg", "w6"),
             ("第一学段阅读研讨", "11.png", "w7"),
             ("第一学段阅读研讨", "12.png", "w8"),
-            ("赋能分层共生集备", "14.jpeg", "w9"),
+            ("real", "plant_share.jpg", "w9"),
         ],
         "voice": [
             ("古人谈读书", "02.jpeg", "v1"),
@@ -156,44 +205,36 @@ def stage_copies() -> dict:
             ("古人谈读书", "06.jpeg", "v4"),
             ("古人谈读书", "07.jpeg", "v5"),
             ("古人谈读书", "08.jpeg", "v6"),
-            ("五校语文集体备课", "11.jpeg", "v7"),
-            ("五校语文集体备课", "12.jpeg", "v8"),
-            ("五校语文集体备课", "14.jpeg", "v9"),
+            ("real", "guren_mic.jpg", "v7"),
+            ("real", "guren_peer.jpg", "v8"),
+            ("real", "here_beauty.jpg", "v9"),
         ],
         "prep": [
             ("赋能分层共生集备", "11.jpeg", "p1"),
             ("赋能分层共生集备", "12.jpeg", "p2"),
             ("赋能分层共生集备", "13.jpeg", "p3"),
-            ("赋能分层共生集备", "15.jpeg", "p4"),
-            ("赋能分层共生集备", "16.jpeg", "p5"),
-            ("赋能分层共生集备", "18.jpeg", "p6"),
-            ("五校语文集体备课", "13.jpeg", "p7"),
-            ("五校语文集体备课", "15.jpeg", "p8"),
-            ("五校语文集体备课", "16.jpeg", "p9"),
+            ("赋能分层共生集备", "14.jpeg", "p4"),
+            ("赋能分层共生集备", "15.jpeg", "p5"),
+            ("赋能分层共生集备", "16.jpeg", "p6"),
+            ("五校语文集体备课", "11.jpeg", "p7"),
+            ("五校语文集体备课", "12.jpeg", "p8"),
+            ("五校语文集体备课", "14.jpeg", "p9"),
         ],
         "low": [
             ("第一学段阅读研讨", "08.png", "l1"),
             ("第一学段阅读研讨", "09.jpeg", "l2"),
             ("第一学段阅读研讨", "10.png", "l3"),
             ("第一学段阅读研讨", "11.png", "l4"),
-            ("第一学段阅读研讨", "12.png", "l5"),
-            ("第一学段阅读研讨", "07.png", "l6"),
-            ("第一学段阅读研讨", "01.png", "l7"),
-            ("地方课程三秀同台", "15.jpeg", "l8"),
-            ("地方课程三秀同台", "16.jpeg", "l9"),
         ],
     }
     staged = {}
     for group, specs in mapping.items():
         paths = []
         for album, fname, alias in specs:
-            src = MAT / album / fname
-            if not src.exists():
-                # fallback to best scored
-                alts = pick(album, 1)
-                if not alts:
-                    continue
-                src = alts[0]
+            src = resolve_src(album, fname)
+            if src is None:
+                print("skip missing/rejected", album, fname)
+                continue
             dest = DENSE / f"{group}_{alias}{src.suffix.lower()}"
             shutil.copy(src, dest)
             paths.append(dest)
@@ -214,26 +255,25 @@ def compose_dense() -> None:
                cell=(620, 400))
 
     labels = [
-        "（a）《即景》课题页", "（b）《即景》板书支架", "（c）日落观察记录单",
-        "（d）教材要求上屏", "（e）《我的植物朋友》课题", "（f）板书：写清楚／有感受",
-        "（g）植物记录卡细目", "（h）《古人谈读书》课题", "（i）“熟读深思”板书",
+        "（a）日落观察记录单", "（b）学生片段上屏评改", "（c）《即景》现场板书",
+        "（d）植物记录卡细目", "（e）《我的植物朋友》现场板书", "（f）记录卡进入公共视野",
+        "（g）语录与注释同屏", "（h）学生持麦解释", "（i）同桌互读互评",
     ]
     dense_grid(list(zip(staged["scaffold"], labels)), "plate_scaffold.jpg",
-               "真实教学材料合集（稠密）：板书、记录单与记录卡", ncols=3,
+               "真实教学材料合集（稠密）：观察单、记录卡与现场板书", ncols=3,
                cell=(620, 380), fit="contain")
 
     labels = [
-        "（a）现场：屏幕与板书并置", "（b）学生面向讲台写作", "（c）片段交流／评改",
-        "（d）观察记录单物证", "（e）板书“顺序／变化”", "（f）要求页可见支架",
-        "（g）课题导入页", "（h）分层任务进入公共屏", "（i）习作支架课堂流转",
+        "（a）现场全景", "（b）屏幕与真实板书并置", "（c）学生面向讲台写作",
+        "（d）观察记录单物证", "（e）片段上屏对照评改", "（f）习作要求进入公共屏",
     ]
     dense_grid(list(zip(staged["break"], labels)), "plate_break.jpg",
                "《即景》破程合集（稠密）：观察所得进课堂，终稿仍由学生完成", ncols=3)
 
     labels = [
         "（a）课堂全景", "（b）教师组织分享", "（c）学生举卡可见",
-        "（d）同伴交流瞬间", "（e）板书支架", "（f）记录卡细节",
-        "（g）低段角色互动", "（h）低段横向问答预备", "（i）分层习作任务屏",
+        "（d）同伴交流瞬间", "（e）记录卡细节", "（f）现场板书支架",
+        "（g）低段角色互动", "（h）低段横向问答预备", "（i）记录卡进入公共视野",
     ]
     dense_grid(list(zip(staged["write"], labels)), "plate_write.jpg",
                "化卡为文与低段横向通道合集（稠密）", ncols=3)
@@ -241,26 +281,26 @@ def compose_dense() -> None:
     labels = [
         "（a）课堂全景", "（b）同桌／小组活动", "（c）持麦解释",
         "（d）教师侧立组织", "（e）语录文本上屏", "（f）学生面向同伴表达",
-        "（g）例文／支架上屏", "（h）按支架动笔", "（i）习作同课异构现场",
+        "（g）持麦表达特写", "（h）同桌互读", "（i）《这儿真美》按支架动笔",
     ]
     dense_grid(list(zip(staged["voice"], labels)), "plate_voice.jpg",
                "复权合集（稠密）：把问和写交还给学生", ncols=3)
 
     labels = [
-        "（a）“赋能·分层·共生”主题屏", "（b）学情支架展示", "（c）课堂互动组织",
+        "（a）“赋能·分层·共生”课堂", "（b）学情支架展示", "（c）课堂互动组织",
         "（d）学生按任务表达", "（e）量规／评价可见", "（f）同伴互评瞬间",
-        "（g）五校联研现场", "（h）同课异构听课", "（i）集备成果交流",
+        "（g）五校联研习作课", "（h）按支架动笔", "（i）同课异构现场",
     ]
     dense_grid(list(zip(staged["prep"], labels)), "plate_prep.jpg",
                "区域习作教研合集（稠密）：赋能·分层·共生", ncols=3)
 
     labels = [
-        "（a）字卡／谜语投屏", "（b）低段课堂就座", "（c）举手应答",
-        "（d）角色扮演", "（e）学生互问预备", "（f）研讨听课席",
-        "（g）课例文本页", "（h）地方课程展示互动", "（i）公开课互动侧面",
+        "（a）字卡／谜语投屏", "（b）低段课堂就座",
+        "（c）举手应答", "（d）角色扮演",
     ]
     dense_grid(list(zip(staged["low"], labels)), "plate_low.jpg",
-               "低段阅读研讨合集（稠密）：情境打开与通道仍偏放射", ncols=3)
+               "低段阅读研讨合集：情境打开与通道仍偏放射", ncols=2,
+               cell=(720, 460))
 
     meta = {k: [str(p.relative_to(ROOT)) for p in v] for k, v in staged.items()}
     (DENSE / "manifest.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")

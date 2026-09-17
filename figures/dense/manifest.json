@@ -11,37 +11,34 @@
     "figures/dense/scene_guren_wide.jpeg"
   ],
   "scaffold": [
-    "figures/dense/scaffold_jing_title.png",
-    "figures/dense/scaffold_jing_board.png",
-    "figures/dense/scaffold_jing_card.jpeg",
-    "figures/dense/scaffold_jing_req.png",
-    "figures/dense/scaffold_plant_title.png",
-    "figures/dense/scaffold_plant_board.png",
-    "figures/dense/scaffold_plant_card.png",
-    "figures/dense/scaffold_guren_title.png",
-    "figures/dense/scaffold_guren_board.png"
+    "figures/dense/scaffold_jing_card.jpg",
+    "figures/dense/scaffold_jing_essay.jpg",
+    "figures/dense/scaffold_jing_board_live.jpeg",
+    "figures/dense/scaffold_plant_card.jpg",
+    "figures/dense/scaffold_plant_board_live.jpg",
+    "figures/dense/scaffold_plant_share.jpg",
+    "figures/dense/scaffold_guren_text.jpg",
+    "figures/dense/scaffold_guren_mic.jpg",
+    "figures/dense/scaffold_guren_peer.jpg"
   ],
   "break": [
     "figures/dense/break_b1.jpeg",
     "figures/dense/break_b2.jpeg",
     "figures/dense/break_b3.jpeg",
-    "figures/dense/break_b4.jpeg",
-    "figures/dense/break_b5.png",
-    "figures/dense/break_b6.png",
-    "figures/dense/break_b7.png",
-    "figures/dense/break_b8.jpeg",
-    "figures/dense/break_b9.jpeg"
+    "figures/dense/break_b4.jpg",
+    "figures/dense/break_b5.jpg",
+    "figures/dense/break_b6.jpg"
   ],
   "write": [
     "figures/dense/write_w1.jpeg",
     "figures/dense/write_w2.jpeg",
     "figures/dense/write_w3.jpeg",
     "figures/dense/write_w4.jpeg",
-    "figures/dense/write_w5.png",
-    "figures/dense/write_w6.png",
+    "figures/dense/write_w5.jpg",
+    "figures/dense/write_w6.jpg",
     "figures/dense/write_w7.png",
     "figures/dense/write_w8.png",
-    "figures/dense/write_w9.jpeg"
+    "figures/dense/write_w9.jpg"
   ],
   "voice": [
     "figures/dense/voice_v1.jpeg",
@@ -50,9 +47,9 @@
     "figures/dense/voice_v4.jpeg",
     "figures/dense/voice_v5.jpeg",
     "figures/dense/voice_v6.jpeg",
-    "figures/dense/voice_v7.jpeg",
-    "figures/dense/voice_v8.jpeg",
-    "figures/dense/voice_v9.jpeg"
+    "figures/dense/voice_v7.jpg",
+    "figures/dense/voice_v8.jpg",
+    "figures/dense/voice_v9.jpg"
   ],
   "prep": [
     "figures/dense/prep_p1.jpeg",
@@ -69,11 +66,6 @@
     "figures/dense/low_l1.png",
     "figures/dense/low_l2.jpeg",
     "figures/dense/low_l3.png",
-    "figures/dense/low_l4.png",
-    "figures/dense/low_l5.png",
-    "figures/dense/low_l6.png",
-    "figures/dense/low_l7.png",
-    "figures/dense/low_l8.jpeg",
-    "figures/dense/low_l9.jpeg"
+    "figures/dense/low_l4.png"
   ]
 }
