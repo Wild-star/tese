@@ -255,7 +255,7 @@ def compose_dense() -> None:
         "（g）《我的植物朋友》全景", "（h）记录卡进入公共视野", "（i）《古人谈读书》全景",
     ]
     dense_grid(list(zip(staged["scene"], labels)), "plate_scene.jpg",
-               "课堂现场合集（稠密）：座位朝向、发言方向与公开课结构", ncols=3,
+               "课堂现场合集：座位朝向、发言方向与公开课结构", ncols=3,
                cell=(620, 400))
 
     labels = [
@@ -264,7 +264,7 @@ def compose_dense() -> None:
         "（g）语录与注释同屏", "（h）学生持麦解释", "（i）同桌互读互评",
     ]
     dense_grid(list(zip(staged["scaffold"], labels)), "plate_scaffold.jpg",
-               "真实教学材料合集（稠密）：观察单、记录卡与现场板书", ncols=3,
+               "真实教学材料合集：观察单、记录卡与现场板书", ncols=3,
                cell=(620, 380), fit="contain")
 
     labels = [
@@ -272,7 +272,7 @@ def compose_dense() -> None:
         "（d）观察记录单物证", "（e）片段上屏对照评改", "（f）习作要求进入公共屏",
     ]
     dense_grid(list(zip(staged["break"], labels)), "plate_break.jpg",
-               "《即景》破程合集（稠密）：观察所得进课堂，终稿仍由学生完成", ncols=3)
+               "《即景》破程合集：观察所得进课堂，终稿仍由学生完成", ncols=3)
 
     labels = [
         "（a）课堂全景", "（b）教师组织分享", "（c）学生举卡可见",
@@ -280,7 +280,7 @@ def compose_dense() -> None:
         "（g）低段角色互动", "（h）低段横向问答预备", "（i）记录卡进入公共视野",
     ]
     dense_grid(list(zip(staged["write"], labels)), "plate_write.jpg",
-               "化卡为文与低段横向通道合集（稠密）", ncols=3)
+               "化卡为文与低段横向通道合集", ncols=3)
 
     labels = [
         "（a）课堂全景", "（b）同桌／小组活动", "（c）持麦解释",
@@ -288,7 +288,7 @@ def compose_dense() -> None:
         "（g）持麦表达特写", "（h）同桌互读", "（i）《这儿真美》按支架动笔",
     ]
     dense_grid(list(zip(staged["voice"], labels)), "plate_voice.jpg",
-               "复权合集（稠密）：把问和写交还给学生", ncols=3)
+               "复权合集：把问和写交还给学生", ncols=3)
 
     labels = [
         "（a）“赋能·分层·共生”课堂", "（b）学情支架展示", "（c）课堂互动组织",
@@ -296,7 +296,7 @@ def compose_dense() -> None:
         "（g）五校联研习作课", "（h）按支架动笔", "（i）同课异构现场",
     ]
     dense_grid(list(zip(staged["prep"], labels)), "plate_prep.jpg",
-               "区域习作教研合集（稠密）：赋能·分层·共生", ncols=3)
+               "区域习作教研合集：赋能·分层·共生", ncols=3)
 
     labels = [
         "（a）字卡／谜语投屏", "（b）低段课堂就座",
@@ -305,7 +305,7 @@ def compose_dense() -> None:
     dense_grid(
         list(zip(staged["low"], labels)),
         "plate_low.jpg",
-        "图13 低段阅读研讨合集（2×2）",
+        "低段阅读研讨合集：情境打开与通道仍偏放射",
         ncols=2,
         cell=(860, 560),
         fit="cover",
