@@ -235,7 +235,24 @@ def add_three_line_table(doc, rows: list[list[str]]) -> None:
                                  SPEC.table_pt, bold=is_header)
 
 
-def add_image(doc, path: Path) -> None:
+def parse_img_opts(raw: str | None) -> dict:
+    opts = {"w": SPEC.image_width_cm, "hmax": 18.0}
+    if not raw:
+        return opts
+    for part in raw.split(","):
+        if "=" not in part:
+            continue
+        k, v = part.split("=", 1)
+        k, v = k.strip(), v.strip()
+        if k in ("w", "hmax"):
+            try:
+                opts[k] = float(v)
+            except ValueError:
+                pass
+    return opts
+
+
+def add_image(doc, path: Path, *, width_cm: float | None = None, hmax_cm: float = 18.0) -> None:
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     pf = p.paragraph_format
@@ -245,15 +262,15 @@ def add_image(doc, path: Path) -> None:
     pf.keep_with_next = True
     apply_line_15(pf)
     run = p.add_run()
-    width_cm = SPEC.image_width_cm
+    width_cm = SPEC.image_width_cm if width_cm is None else width_cm
     try:
         from PIL import Image as PILImage
         with PILImage.open(path) as im:
             w, h = im.size
         if w and h:
             height_cm = width_cm * h / w
-            if height_cm > 17.5:
-                width_cm = 17.5 * w / h
+            if height_cm > hmax_cm:
+                width_cm = hmax_cm * w / h
     except Exception:
         pass
     run.add_picture(str(path), width=Cm(width_cm))
@@ -320,12 +337,13 @@ def parse_and_build(md_path: Path, out_path: Path) -> Path:
             i += 1
             continue
 
-        # 图片
-        m_img = re.match(r"!\[.*?\]\((.+?)\)", stripped)
+        # 图片，可选 {w=14.5,hmax=18}
+        m_img = re.match(r"!\[.*?\]\((.+?)\)(?:\{([^}]+)\})?", stripped)
         if m_img:
             img = (base / m_img.group(1)).resolve()
             if img.exists():
-                add_image(doc, img)
+                opts = parse_img_opts(m_img.group(2))
+                add_image(doc, img, width_cm=opts["w"], hmax_cm=opts["hmax"])
             i += 1
             continue
 
