@@ -1,694 +1,384 @@
 {
  "spec": {
   "width_px": 2008,
-  "height_max_px": 2363,
-  "dpi": 300,
   "width_mm": 170,
-  "height_mm_max": 200,
-  "note": "每张 PNG 即一张可直接插入论文的成品图：宽度恒为论文双栏版心 17cm，高度不超过一页"
+  "dpi": 300,
+  "heights": {
+   "模型图": "100mm",
+   "合集": "30–77mm",
+   "现场": "30–46mm",
+   "设计/纪要": "100mm"
+  },
+  "note": "统一宽 170mm；高度按类型分档，单图 ≤100mm（半页），一页可放两张"
  },
- "rules": [
-  "禁止缩放或拉伸（宽度已等于版心）",
-  "禁止把多张 PNG 拼接成一张（会产生超长图）",
-  "禁止裁切（内容按版心排版）",
-  "禁止在图上叠加文字/水印/边框",
-  "同一篇材料不要一次全部插入，按正文需要选 1-2 张"
- ],
- "total_articles": 20,
- "total_pages": 43,
- "articles": [
+ "figures": [
   {
-   "id": "F01",
-   "title": "三上第22课《读不完的大书》南宁市  陈永泰",
-   "kind": "教案型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F01_三上第22课《读不完的大书》南宁市陈永泰",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F01_三上第22课《读不完的大书》南宁市陈永泰/F01_三上第22课《读不完的大书》南宁市陈永泰_设计.pdf",
-   "page_count": 2,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F01_三上第22课《读不完的大书》南宁市陈永泰/F01_三上第22课《读不完的大书》南宁市陈永泰_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F01_三上第22课《读不完的大书》南宁市陈永泰/F01_三上第22课《读不完的大书》南宁市陈永泰_设计_02.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 1,
+   "name": "图01_教学交互层次模型.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图01_教学交互层次模型.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "模型图"
   },
   {
-   "id": "F02",
-   "title": "三下第8课《池子与河流》天津  柏邑",
-   "kind": "教案型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F02_三下第8课《池子与河流》天津柏邑",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F02_三下第8课《池子与河流》天津柏邑/F02_三下第8课《池子与河流》天津柏邑_设计.pdf",
-   "page_count": 2,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F02_三下第8课《池子与河流》天津柏邑/F02_三下第8课《池子与河流》天津柏邑_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F02_三下第8课《池子与河流》天津柏邑/F02_三下第8课《池子与河流》天津柏邑_设计_02.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 2,
+   "name": "图02_课堂现场合集.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图02_课堂现场合集.png",
+   "w": 2008,
+   "h": 910,
+   "mm": [
+    170,
+    77
+   ],
+   "kind": "合集"
   },
   {
-   "id": "F03",
-   "title": "四上第21课《古诗三首》——长春  刘婷",
-   "kind": "教案型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F03_四上第21课《古诗三首》——长春刘婷",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F03_四上第21课《古诗三首》——长春刘婷/F03_四上第21课《古诗三首》——长春刘婷_设计.pdf",
-   "page_count": 3,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F03_四上第21课《古诗三首》——长春刘婷/F03_四上第21课《古诗三首》——长春刘婷_图像01.png",
-     "w": 2008,
-     "h": 1442,
-     "mm": [
-      170,
-      122
-     ]
-    },
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F03_四上第21课《古诗三首》——长春刘婷/F03_四上第21课《古诗三首》——长春刘婷_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F03_四上第21课《古诗三首》——长春刘婷/F03_四上第21课《古诗三首》——长春刘婷_设计_02.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 4,
+   "name": "图04_真实教学材料合集.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图04_真实教学材料合集.png",
+   "w": 2008,
+   "h": 354,
+   "mm": [
+    170,
+    30
+   ],
+   "kind": "合集"
   },
   {
-   "id": "F04",
-   "title": "统编三年级下册第一单元习作课《我的植物朋友》——新疆  曹美欣",
-   "kind": "教案型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F04_统编三年级下册第一单元习作课《我的植物朋",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F04_统编三年级下册第一单元习作课《我的植物朋/F04_统编三年级下册第一单元习作课《我的植物朋_设计.pdf",
-   "page_count": 2,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F04_统编三年级下册第一单元习作课《我的植物朋/F04_统编三年级下册第一单元习作课《我的植物朋_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F04_统编三年级下册第一单元习作课《我的植物朋/F04_统编三年级下册第一单元习作课《我的植物朋_设计_02.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 5,
+   "name": "图05_三层互动三元主体三阶校准理论模型.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图05_三层互动三元主体三阶校准理论模型.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "模型图"
   },
   {
-   "id": "F05",
-   "title": "统编五上册第七单元习作《 即景》——浙江 马益彬",
-   "kind": "教案型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F05_统编五上册第七单元习作《即景》——浙江马",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F05_统编五上册第七单元习作《即景》——浙江马/F05_统编五上册第七单元习作《即景》——浙江马_设计.pdf",
-   "page_count": 2,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F05_统编五上册第七单元习作《即景》——浙江马/F05_统编五上册第七单元习作《即景》——浙江马_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F05_统编五上册第七单元习作《即景》——浙江马/F05_统编五上册第七单元习作《即景》——浙江马_设计_02.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 7,
+   "name": "图07_即景破程合集.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图07_即景破程合集.png",
+   "w": 2008,
+   "h": 354,
+   "mm": [
+    170,
+    30
+   ],
+   "kind": "合集"
   },
   {
-   "id": "F06",
-   "title": "统编五上第24课《古人谈读书》——河南省 司培宁",
-   "kind": "教案型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F06_统编五上第24课《古人谈读书》——河南省",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F06_统编五上第24课《古人谈读书》——河南省/F06_统编五上第24课《古人谈读书》——河南省_设计.pdf",
-   "page_count": 3,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F06_统编五上第24课《古人谈读书》——河南省/F06_统编五上第24课《古人谈读书》——河南省_图像01.png",
-     "w": 2008,
-     "h": 1511,
-     "mm": [
-      170,
-      128
-     ]
-    },
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F06_统编五上第24课《古人谈读书》——河南省/F06_统编五上第24课《古人谈读书》——河南省_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F06_统编五上第24课《古人谈读书》——河南省/F06_统编五上第24课《古人谈读书》——河南省_设计_02.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 8,
+   "name": "图08_化卡为文与低段横向通道.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图08_化卡为文与低段横向通道.png",
+   "w": 2008,
+   "h": 354,
+   "mm": [
+    170,
+    30
+   ],
+   "kind": "设计/纪要"
   },
   {
-   "id": "F07",
-   "title": "统编五上第八单元习作《推荐一本书》——四川  刘列平",
-   "kind": "教案型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F07_统编五上第八单元习作《推荐一本书》——四",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F07_统编五上第八单元习作《推荐一本书》——四/F07_统编五上第八单元习作《推荐一本书》——四_设计.pdf",
-   "page_count": 2,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F07_统编五上第八单元习作《推荐一本书》——四/F07_统编五上第八单元习作《推荐一本书》——四_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F07_统编五上第八单元习作《推荐一本书》——四/F07_统编五上第八单元习作《推荐一本书》——四_设计_02.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 9,
+   "name": "图09_复权合集.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图09_复权合集.png",
+   "w": 2008,
+   "h": 464,
+   "mm": [
+    170,
+    39
+   ],
+   "kind": "合集"
   },
   {
-   "id": "F08",
-   "title": "统编六上第7课《开国大典》——云南 王婧茜",
-   "kind": "教案型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F08_统编六上第7课《开国大典》——云南王婧茜",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F08_统编六上第7课《开国大典》——云南王婧茜/F08_统编六上第7课《开国大典》——云南王婧茜_设计.pdf",
-   "page_count": 2,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F08_统编六上第7课《开国大典》——云南王婧茜/F08_统编六上第7课《开国大典》——云南王婧茜_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F08_统编六上第7课《开国大典》——云南王婧茜/F08_统编六上第7课《开国大典》——云南王婧茜_设计_02.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 11,
+   "name": "图11_课前课中课后人机分工闭环流程.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图11_课前课中课后人机分工闭环流程.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "模型图"
   },
   {
-   "id": "F09",
-   "title": "统编六上第六单元口语交际《意见不同怎么办》——湖北省 朱丽霞",
-   "kind": "教案型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F09_统编六上第六单元口语交际《意见不同怎么办",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F09_统编六上第六单元口语交际《意见不同怎么办/F09_统编六上第六单元口语交际《意见不同怎么办_设计.pdf",
-   "page_count": 2,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F09_统编六上第六单元口语交际《意见不同怎么办/F09_统编六上第六单元口语交际《意见不同怎么办_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F09_统编六上第六单元口语交际《意见不同怎么办/F09_统编六上第六单元口语交际《意见不同怎么办_设计_02.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 14,
+   "name": "图14_读不完的大书_教学设计与流程.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图14_读不完的大书_教学设计与流程.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
   },
   {
-   "id": "F10",
-   "title": "统编四上第六单元口语交际《安慰》——秦皇岛   赵悦",
-   "kind": "教案型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F10_统编四上第六单元口语交际《安慰》——秦皇",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F10_统编四上第六单元口语交际《安慰》——秦皇/F10_统编四上第六单元口语交际《安慰》——秦皇_设计.pdf",
-   "page_count": 1,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F10_统编四上第六单元口语交际《安慰》——秦皇/F10_统编四上第六单元口语交际《安慰》——秦皇_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 15,
+   "name": "图15_池子与河流_教学设计与流程.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图15_池子与河流_教学设计与流程.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
   },
   {
-   "id": "F11",
-   "title": "三秀同台·薪火相传",
-   "kind": "活动纪要型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F11_三秀同台·薪火相传",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F11_三秀同台·薪火相传/F11_三秀同台·薪火相传_设计.pdf",
-   "page_count": 3,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F11_三秀同台·薪火相传/F11_三秀同台·薪火相传_图像01.png",
-     "w": 2008,
-     "h": 1511,
-     "mm": [
-      170,
-      128
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F11_三秀同台·薪火相传/F11_三秀同台·薪火相传_图像02.png",
-     "w": 2008,
-     "h": 1511,
-     "mm": [
-      170,
-      128
-     ]
-    },
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F11_三秀同台·薪火相传/F11_三秀同台·薪火相传_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 16,
+   "name": "图16_古诗三首_第一课时教学设计与流程.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图16_古诗三首_第一课时教学设计与流程.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
   },
   {
-   "id": "F12",
-   "title": "动手做中学，放飞科学梦",
-   "kind": "活动纪要型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F12_动手做中学，放飞科学梦",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F12_动手做中学，放飞科学梦/F12_动手做中学，放飞科学梦_设计.pdf",
-   "page_count": 2,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F12_动手做中学，放飞科学梦/F12_动手做中学，放飞科学梦_图像01.png",
-     "w": 2008,
-     "h": 1511,
-     "mm": [
-      170,
-      128
-     ]
-    },
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F12_动手做中学，放飞科学梦/F12_动手做中学，放飞科学梦_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 17,
+   "name": "图17_古诗三首课堂现场.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图17_古诗三首课堂现场.png",
+   "w": 2008,
+   "h": 538,
+   "mm": [
+    170,
+    46
+   ],
+   "kind": "现场"
   },
   {
-   "id": "F13",
-   "title": "小学语文作文思维导图",
-   "kind": "活动纪要型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F13_小学语文作文思维导图",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F13_小学语文作文思维导图/F13_小学语文作文思维导图_设计.pdf",
-   "page_count": 3,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F13_小学语文作文思维导图/F13_小学语文作文思维导图_图像01.png",
-     "w": 2008,
-     "h": 1582,
-     "mm": [
-      170,
-      134
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F13_小学语文作文思维导图/F13_小学语文作文思维导图_图像02.png",
-     "w": 2008,
-     "h": 1507,
-     "mm": [
-      170,
-      128
-     ]
-    },
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F13_小学语文作文思维导图/F13_小学语文作文思维导图_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 18,
+   "name": "图18_即景_第一课时教学设计与流程.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图18_即景_第一课时教学设计与流程.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
   },
   {
-   "id": "F14",
-   "title": "异构碰撞促成长，五校联研绽芳华",
-   "kind": "活动纪要型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F14_异构碰撞促成长，五校联研绽芳华",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F14_异构碰撞促成长，五校联研绽芳华/F14_异构碰撞促成长，五校联研绽芳华_设计.pdf",
-   "page_count": 1,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F14_异构碰撞促成长，五校联研绽芳华/F14_异构碰撞促成长，五校联研绽芳华_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 19,
+   "name": "图19_即景_第二课时教学设计与流程.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图19_即景_第二课时教学设计与流程.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
   },
   {
-   "id": "F15",
-   "title": "深耕课堂研加减 聚力教研促成长",
-   "kind": "活动纪要型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F15_深耕课堂研加减聚力教研促成长",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F15_深耕课堂研加减聚力教研促成长/F15_深耕课堂研加减聚力教研促成长_设计.pdf",
-   "page_count": 2,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F15_深耕课堂研加减聚力教研促成长/F15_深耕课堂研加减聚力教研促成长_图像01.png",
-     "w": 2008,
-     "h": 1511,
-     "mm": [
-      170,
-      128
-     ]
-    },
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F15_深耕课堂研加减聚力教研促成长/F15_深耕课堂研加减聚力教研促成长_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 20,
+   "name": "图20_我的植物朋友_教学设计与流程.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图20_我的植物朋友_教学设计与流程.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
   },
   {
-   "id": "F16",
-   "title": "聚焦新材磨好课 深耕课堂促成长",
-   "kind": "活动纪要型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F16_聚焦新材磨好课深耕课堂促成长",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F16_聚焦新材磨好课深耕课堂促成长/F16_聚焦新材磨好课深耕课堂促成长_设计.pdf",
-   "page_count": 4,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F16_聚焦新材磨好课深耕课堂促成长/F16_聚焦新材磨好课深耕课堂促成长_图像01.png",
-     "w": 2008,
-     "h": 1511,
-     "mm": [
-      170,
-      128
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F16_聚焦新材磨好课深耕课堂促成长/F16_聚焦新材磨好课深耕课堂促成长_图像02.png",
-     "w": 2008,
-     "h": 1509,
-     "mm": [
-      170,
-      128
-     ]
-    },
-    {
-     "no": 3,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F16_聚焦新材磨好课深耕课堂促成长/F16_聚焦新材磨好课深耕课堂促成长_图像03.png",
-     "w": 2008,
-     "h": 1388,
-     "mm": [
-      170,
-      118
-     ]
-    },
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F16_聚焦新材磨好课深耕课堂促成长/F16_聚焦新材磨好课深耕课堂促成长_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 21,
+   "name": "图21_古人谈读书_第一课时教学设计与流程.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图21_古人谈读书_第一课时教学设计与流程.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
   },
   {
-   "id": "F17",
-   "title": "聚焦阅读教学 助力新师成长",
-   "kind": "活动纪要型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F17_聚焦阅读教学助力新师成长",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F17_聚焦阅读教学助力新师成长/F17_聚焦阅读教学助力新师成长_设计.pdf",
-   "page_count": 2,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F17_聚焦阅读教学助力新师成长/F17_聚焦阅读教学助力新师成长_图像01.png",
-     "w": 2008,
-     "h": 1508,
-     "mm": [
-      170,
-      128
-     ]
-    },
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F17_聚焦阅读教学助力新师成长/F17_聚焦阅读教学助力新师成长_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 22,
+   "name": "图22_古人谈读书课堂现场.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图22_古人谈读书课堂现场.png",
+   "w": 2008,
+   "h": 464,
+   "mm": [
+    170,
+    39
+   ],
+   "kind": "现场"
   },
   {
-   "id": "F18",
-   "title": "薛法根：走向有效的作文课堂教学",
-   "kind": "活动纪要型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F18_薛法根：走向有效的作文课堂教学",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F18_薛法根：走向有效的作文课堂教学/F18_薛法根：走向有效的作文课堂教学_设计.pdf",
-   "page_count": 1,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F18_薛法根：走向有效的作文课堂教学/F18_薛法根：走向有效的作文课堂教学_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 23,
+   "name": "图23_推荐一本书_教学设计与流程.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图23_推荐一本书_教学设计与流程.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
   },
   {
-   "id": "F19",
-   "title": "读写贯通的单元教学设计",
-   "kind": "活动纪要型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F19_读写贯通的单元教学设计",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F19_读写贯通的单元教学设计/F19_读写贯通的单元教学设计_设计.pdf",
-   "page_count": 1,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F19_读写贯通的单元教学设计/F19_读写贯通的单元教学设计_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 24,
+   "name": "图24_有效作文课堂的公开论述.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图24_有效作文课堂的公开论述.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
   },
   {
-   "id": "F20",
-   "title": "赋能·分层·共生",
-   "kind": "活动纪要型",
-   "dir": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F20_赋能·分层·共生",
-   "pdf": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F20_赋能·分层·共生/F20_赋能·分层·共生_设计.pdf",
-   "page_count": 3,
-   "pages": [
-    {
-     "no": 1,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F20_赋能·分层·共生/F20_赋能·分层·共生_图像01.png",
-     "w": 2008,
-     "h": 1582,
-     "mm": [
-      170,
-      134
-     ]
-    },
-    {
-     "no": 2,
-     "role": "图像组",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F20_赋能·分层·共生/F20_赋能·分层·共生_图像02.png",
-     "w": 2008,
-     "h": 1511,
-     "mm": [
-      170,
-      128
-     ]
-    },
-    {
-     "no": 1,
-     "role": "图版页",
-     "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/F20_赋能·分层·共生/F20_赋能·分层·共生_设计_01.png",
-     "w": 2008,
-     "h": 2363,
-     "mm": [
-      170,
-      200
-     ]
-    }
-   ]
+   "no": 25,
+   "name": "图25_开国大典_教学设计与流程.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图25_开国大典_教学设计与流程.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
+  },
+  {
+   "no": 26,
+   "name": "图26_科学综合实践教研纪要.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图26_科学综合实践教研纪要.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
+  },
+  {
+   "no": 27,
+   "name": "图27_科学综合实践现场.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图27_科学综合实践现场.png",
+   "w": 2008,
+   "h": 464,
+   "mm": [
+    170,
+    39
+   ],
+   "kind": "现场"
+  },
+  {
+   "no": 28,
+   "name": "图28_意见不同怎么办_教学设计与流程.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图28_意见不同怎么办_教学设计与流程.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
+  },
+  {
+   "no": 29,
+   "name": "图29_安慰_教学设计与流程.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图29_安慰_教学设计与流程.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
+  },
+  {
+   "no": 30,
+   "name": "图30_习作思维导图教研纪要.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图30_习作思维导图教研纪要.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
+  },
+  {
+   "no": 31,
+   "name": "图31_习作思维导图现场.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图31_习作思维导图现场.png",
+   "w": 2008,
+   "h": 464,
+   "mm": [
+    170,
+    39
+   ],
+   "kind": "现场"
+  },
+  {
+   "no": 32,
+   "name": "图32_读写贯通的单元教学设计.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图32_读写贯通的单元教学设计.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
+  },
+  {
+   "no": 33,
+   "name": "图33_五校联研纪要.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图33_五校联研纪要.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
+  },
+  {
+   "no": 34,
+   "name": "图34_习作集备赋能分层共生教研纪要.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图34_习作集备赋能分层共生教研纪要.png",
+   "w": 2008,
+   "h": 1182,
+   "mm": [
+    170,
+    100
+   ],
+   "kind": "设计/纪要"
+  },
+  {
+   "no": 35,
+   "name": "图35_赋能分层共生现场.png",
+   "png": "/home/qianhongchang@eacon.com/桌面/小学/tese/论文插图/图35_赋能分层共生现场.png",
+   "w": 2008,
+   "h": 354,
+   "mm": [
+    170,
+    30
+   ],
+   "kind": "现场"
   }
+ ],
+ "count": 30,
+ "missing": [
+  3,
+  6,
+  10,
+  12,
+  13
  ]
 }
