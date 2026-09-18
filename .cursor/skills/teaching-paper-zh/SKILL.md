@@ -39,7 +39,7 @@ python3 scripts/build_formatted_docx.py
 ./生成Word.sh
 ```
 
-规格以 `scripts/word_format.py` 为唯一来源。Markdown 中的「三级目录」在转入 Word 时自动跳过。顺序：题目→摘要→关键词→正文→参考文献。
+规格以 `scripts/word_format.py` 为唯一来源。Markdown 中的「目录／三级目录」不按一级标题排入正文；Word 将目录单独放在第 1 页，其后分页再接题目、摘要、关键词与正文。顺序：目录→题目→摘要→关键词→正文→参考文献。
 
 # 迭代完成后
 
