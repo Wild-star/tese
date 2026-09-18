@@ -344,6 +344,8 @@ def parse_and_build(md_path: Path, out_path: Path) -> Path:
             if img.exists():
                 opts = parse_img_opts(m_img.group(2))
                 add_image(doc, img, width_cm=opts["w"], hmax_cm=opts["hmax"])
+            else:
+                print("缺图，已跳过：", img)
             i += 1
             continue
 

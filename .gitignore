@@ -1,5 +1,6 @@
-__pycache__/
-*.pyc
+.~lock.*
 materials/
 output/page-*.png
 output/v5p-*.png
+*.pyc
+__pycache__/
