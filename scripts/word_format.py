@@ -35,7 +35,7 @@ class WordFormatSpec:
 
     omit_author: bool = True
     blocked_signatures: tuple = ("王安娜", "杭州市余杭区", "作者", "单位", "基金")
-    order: tuple = ("title", "abstract", "keywords", "body", "references")
+    order: tuple = ("toc", "title", "abstract", "keywords", "body", "references")
 
 
 SPEC = WordFormatSpec()

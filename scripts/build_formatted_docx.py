@@ -5,7 +5,7 @@
 
 格式（固化在 word_format.py）：
   A4；题目三号黑体居中；摘要/关键词/正文/参考文献小四宋体、1.5 倍行距；
-  顺序为题目→摘要→关键词→正文→参考文献；文中不署单位和姓名。
+  顺序为目录→题目→摘要→关键词→正文→参考文献；文中不署单位和姓名。
 
 用法：
   python3 scripts/build_formatted_docx.py
@@ -22,7 +22,7 @@ from pathlib import Path
 
 from docx import Document
 from docx.enum.table import WD_TABLE_ALIGNMENT
-from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_LINE_SPACING
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK, WD_LINE_SPACING
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
@@ -305,11 +305,54 @@ def is_sep_row(cells: list[str]) -> bool:
     return all(re.fullmatch(r":?-{3,}:?", c.replace(" ", "")) for c in cells if c)
 
 
+def collect_headings(lines: list[str]) -> list[tuple[int, str]]:
+    items: list[tuple[int, str]] = []
+    for line in lines:
+        s = line.strip()
+        if s.startswith("#### "):
+            lv, raw = 3, s[5:]
+        elif s.startswith("### "):
+            lv, raw = 2, s[4:]
+        elif s.startswith("## "):
+            lv, raw = 1, s[3:]
+        else:
+            continue
+        title = strip_md(raw)
+        if title in {"目录", "三级目录"}:
+            continue
+        items.append((lv, title))
+    return items
+
+
+def add_toc(doc: Document, headings: list[tuple[int, str]]) -> None:
+    add_para(doc, "目  录", cn=SPEC.font_cn_hei, size=SPEC.h1_pt, bold=True,
+             align=WD_ALIGN_PARAGRAPH.CENTER, first_indent=Cm(0),
+             space_before=0, space_after=6)
+    for lv, title in headings:
+        cn = SPEC.font_cn_hei if lv == 1 else SPEC.font_cn_song
+        p = add_para(doc, title, cn=cn, size=SPEC.body_pt, bold=(lv == 1),
+                     align=WD_ALIGN_PARAGRAPH.LEFT, first_indent=Cm(0),
+                     space_before=0, space_after=0)
+        p.paragraph_format.left_indent = Cm(0.74 * (lv - 1))
+        p.paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
+        p.paragraph_format.line_spacing = 1.0
+        p.paragraph_format.space_after = Pt(2)
+    br = doc.add_paragraph()
+    br.paragraph_format.first_line_indent = Cm(0)
+    br.paragraph_format.space_before = Pt(0)
+    br.paragraph_format.space_after = Pt(0)
+    br.add_run().add_break(WD_BREAK.PAGE)
+
+
 def parse_and_build(md_path: Path, out_path: Path) -> Path:
     raw = md_path.read_text(encoding="utf-8")
     lines = raw.splitlines()
     base = md_path.parent
     doc = init_document()
+    if doc.paragraphs and not doc.paragraphs[0].text.strip():
+        el = doc.paragraphs[0]._element
+        el.getparent().remove(el)
+    add_toc(doc, collect_headings(lines))
 
     i = 0
     skipping_toc = False
@@ -326,7 +369,7 @@ def parse_and_build(md_path: Path, out_path: Path) -> Path:
             i += 1
             continue
         if skipping_toc:
-            if stripped.startswith("## ") or stripped.startswith("【摘要】"):
+            if stripped.startswith("#") or stripped.startswith("【"):
                 skipping_toc = False
             else:
                 i += 1
