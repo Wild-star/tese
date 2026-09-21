@@ -1,14 +1,21 @@
 ---
-description: 本仓库的迭代、分支与成稿交付约定
+description: 本仓库的迭代、读取范围与成稿交付约定
 alwaysApply: true
 ---
 
 # 仓库约定
 
+## 读取范围（硬约束）
+
+- 论文正文、图表、课例、版式与成稿相关的**全部读取与修改，仅限** `2026学会论文成稿/`。
+- **禁止**把仓库根目录旧稿当作正文或规范来源，包括但不限于：`失衡·校准·均衡*.md`、`paper.docx`、`paper_vN.*`、`论文插图/`、`figures/`、根目录 `scripts/` 生成旧稿的流程。
+- 规范唯一真源：`2026学会论文成稿/AGENTS.md`。成稿文件：`2026学会论文成稿/王安娜-学会教育论文_v2.docx` 及后续 `_vN`。
+- 两份教学设计（`2026学会论文成稿/教学设计/`）可读取作课例对照，但不受 AGENTS 版式约束。
+
+## 迭代与交付
+
 - 只在 `main` 上迭代。不要新建功能分支，不要为后续改稿开 PR。
-- 每轮改稿后：更新 Markdown 正文 → 运行 `./生成Word.sh` 或 `python3 scripts/build_formatted_docx.py` → 提交并 `git push origin main`。
-- 可下载文件：`paper.docx`（当前最新）。同时保留轮次副本 `paper_vN.docx`（如 `paper_v3.docx`），避免覆盖后无法对照。
-- 正文来源：`失衡·校准·均衡_AI赋能小学语文三元协同师生互动优化策略.md`。Word 由 `scripts/build_formatted_docx.py` 按 `scripts/word_format.py` 生成。
-- 文中不出现作者姓名、单位、基金、联系方式。个人资料与执教者信息不引用、不标注。
+- 每轮改稿后：只更新 `2026学会论文成稿/` 内文件 → 提交并 `git push origin main`。
+- 文中不出现作者姓名、单位、基金、联系方式（页眉赛事标识除外，见 AGENTS.md）。
 - 不要把无样本、无操作性定义的数字写成统计结论。公开报道数据必须标明「非本文实验数据」。
-- 改稿、润色或去 AI 化时，先读并遵循 `.cursor/skills/teaching-paper-zh/SKILL.md` 与 `.cursor/skills/de-ai-academic-zh/SKILL.md`。
+- 改稿、润色或去 AI 化时，先读 `2026学会论文成稿/AGENTS.md`，再遵循 `.cursor/skills/de-ai-academic-zh/SKILL.md`。

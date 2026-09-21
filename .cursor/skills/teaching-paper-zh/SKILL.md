@@ -1,11 +1,13 @@
 ---
 name: teaching-paper-zh
-description: 按论文十法撰写或迭代中小学教学论文，并生成符合征稿/学位论文版式的 Word。修改本仓库论文、摘要、目录、图表、参考文献或运行生成Word.sh 时使用。
+description: 按论文十法撰写或迭代中小学教学论文。仅处理 2026学会论文成稿 目录。
 ---
 
 # 何时使用
 
-改写、扩写、校对 `*三元协同*.md`，增补课例或图表，或生成 `paper.docx` / `paper_vN.docx` 时，先读本技能，再读 `de-ai-academic-zh`。
+改写、扩写、校对 `2026学会论文成稿/` 内学会论文成稿，增补课例或图表时，先读该目录 `AGENTS.md`，再读 `de-ai-academic-zh`。
+
+**禁止**读取或改写仓库根目录的 `*三元协同*.md`、`paper.docx`、`生成Word.sh`、`scripts/` 旧稿流水线。
 
 # 论文十法（结构）
 
@@ -27,20 +29,13 @@ description: 按论文十法撰写或迭代中小学教学论文，并生成符�
 
 - 不把未交代样本的数字当统计结论。
 - 公开数据必须写明来源层级，并声明非本文实验数据。
-- 不出现作者姓名、单位、基金；课例不标注执教者个人身份。
-- 核心理论图用脚本原创绘制（`scripts/draw_figures.py`）；课堂现场照片图注只写教学动作，不写人名。
+- 文档文字中不出现学校名称、单位名称、作者姓名（页眉赛事标识除外，见 `AGENTS.md`）。
+- 课例以课例名入文；图注只写教学动作。插图与表格规则以 `AGENTS.md` 为准。
 
-# Word 生成
+# 成稿
 
-```bash
-python3 -m pip install -q -r requirements.txt
-python3 scripts/build_formatted_docx.py
-# 或
-./生成Word.sh
-```
-
-规格以 `scripts/word_format.py` 为唯一来源。Markdown 中的「目录／三级目录」不按一级标题排入正文；Word 将目录单独放在第 1 页，其后分页再接题目、摘要、关键词与正文。顺序：目录→题目→摘要→关键词→正文→参考文献。
+成稿为 Word：`2026学会论文成稿/王安娜-学会教育论文_vN.docx`。版式唯一来源是同目录 `AGENTS.md`，不是根目录 `scripts/word_format.py`。
 
 # 迭代完成后
 
-在 `main` 提交中文说明（写清第几轮改了什么），`git push origin main`。复制 `output/paper.docx` 为仓库根目录 `paper.docx`，并增加本轮 `paper_vN.docx`。
+在 `main` 提交中文说明（写清第几轮改了什么），`git push origin main`。轮次文件留在 `2026学会论文成稿/` 内。
