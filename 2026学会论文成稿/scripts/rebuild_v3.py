@@ -22,6 +22,7 @@ SRC_DOCX = ROOT / "王安娜-学会教育论文_v2.docx"
 MD = ROOT / "正文_v3.md"
 OUT_DOCX = ROOT / "王安娜-学会教育论文_v3.docx"
 OUT_PREVIEW_NOTE = ROOT / "王安娜-学会教育论文_v3-预览说明.txt"
+COVER_IMG = ROOT / "封面" / "封面_简洁版.png"
 
 FIG = {
     1: ROOT / "图源" / "fig1_课堂现场_排版用.png",
@@ -89,7 +90,6 @@ def add_page_break(paragraph):
 def clear_after_toc(doc: Document):
     body = doc.element.body
     children = list(body)
-    # keep cover paras 0-6 and TOC sdt at 7; remove everything until sectPr
     # Find TOC sdt index
     toc_idx = None
     for i, child in enumerate(children):
@@ -99,12 +99,55 @@ def clear_after_toc(doc: Document):
             break
     if toc_idx is None:
         raise RuntimeError("TOC sdt not found")
+    # remove old text cover (everything before TOC)
+    for child in children[:toc_idx]:
+        body.remove(child)
+    # re-find toc after removals
+    children = list(body)
+    toc_idx = 0
+    for i, child in enumerate(children):
+        xml = etree.tostring(child, encoding="unicode")
+        if child.tag.endswith("sdt") and "Table of Contents" in xml:
+            toc_idx = i
+            break
     # delete from toc_idx+1 to before sectPr
     for child in children[toc_idx + 1 :]:
         if child.tag.endswith("sectPr"):
             break
         body.remove(child)
     return toc_idx
+
+
+def insert_cover_before_toc(doc: Document):
+    """Insert full-page concise cover image before TOC, with page break after."""
+    if not COVER_IMG.exists():
+        raise FileNotFoundError(COVER_IMG)
+    body = doc.element.body
+    toc = None
+    for child in list(body):
+        xml = etree.tostring(child, encoding="unicode")
+        if child.tag.endswith("sdt") and "Table of Contents" in xml:
+            toc = child
+            break
+    if toc is None:
+        raise RuntimeError("TOC sdt not found")
+
+    # Build cover paragraph + page break paragraph as XML elements via temporary paras
+    p_cover = doc.add_paragraph(style="Normal")
+    set_paragraph_format(p_cover, first_indent_chars=None, align=WD_ALIGN_PARAGRAPH.CENTER, space_before=0, space_after=0)
+    run = p_cover.add_run()
+    # content width ≈ 14.66 cm; cover designed as A4 so scales to one page
+    run.add_picture(str(COVER_IMG), width=Cm(14.66))
+
+    p_break = doc.add_paragraph(style="Normal")
+    set_paragraph_format(p_break, first_indent_chars=None, align=WD_ALIGN_PARAGRAPH.CENTER)
+    add_page_break(p_break)
+
+    # Move the two newly appended paras to before TOC
+    body.remove(p_cover._element)
+    body.remove(p_break._element)
+    toc.addprevious(p_cover._element)
+    toc.addprevious(p_break._element)
 
 
 def replace_toc_cached_text(doc: Document, entries: list[tuple[int, str]]):
@@ -270,7 +313,16 @@ def build():
 
     doc = Document(str(SRC_DOCX))
     clear_after_toc(doc)
+    insert_cover_before_toc(doc)
     ensure_header(doc)
+    # Different first page: hide header on cover
+    section = doc.sections[0]
+    section.different_first_page_header_footer = True
+    # ensure first-page header empty
+    fp = section.first_page_header
+    for p in list(fp.paragraphs):
+        p._element.getparent().remove(p._element)
+    fp.add_paragraph()
 
     toc_entries: list[tuple[int, str]] = []
 
